@@ -1,0 +1,4 @@
+main/migrations
+.idea
+main/__pycache__
+HomeSite/__pycache__
