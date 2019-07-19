@@ -1,0 +1,21 @@
+{% extends 'wrapper.html' %}
+{% block title %}
+<title>Register page</title>
+{% endblock %}
+{% block body %}
+<form method="post">
+    {% csrf_token %}
+    {% if request.user.is_authenticated %}
+        <h2>Пользователь уже авторизован</h2>
+    {% else %}
+    {% if error %}
+    <p>пароли не совпадают</p>
+    {% endif %}
+    {% if lError %}
+    <p>Пользователь с таким именем уже сущевствует!</p>
+    {% endif %}
+        {{ form.as_p }}
+    <input type="submit" value="Register">
+    {% endif %}
+</form>
+{% endblock %}

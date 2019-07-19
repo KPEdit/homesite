@@ -1,0 +1,15 @@
+{% extends 'wrapper.html' %}
+{% block title %}
+<title>Login page</title>
+{% endblock %}
+{% block body %}
+<form method="post">
+    {% csrf_token %}
+    {% if request.user.is_authenticated %}
+        <h2>Пользователь уже авторизован</h2>
+    {% else %}
+        {{ form.as_p }}
+    <input type="submit" value="Login">
+    {% endif %}
+</form>
+{% endblock %}
