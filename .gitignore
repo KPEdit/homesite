@@ -2,3 +2,4 @@ main/migrations
 .idea
 main/__pycache__
 HomeSite/__pycache__
+db.sqlite3
