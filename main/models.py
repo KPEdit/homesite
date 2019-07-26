@@ -6,9 +6,10 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
 
 class MyUserManager(BaseUserManager):
-    def create_user(self,login,password):
+    def create_user(self,login,password, **fields):
         user = self.model(
             login=login.lower(),
+
         )
         user.set_password(password)
         user.save(using=self._db)
@@ -35,7 +36,7 @@ class MyUser(AbstractBaseUser):
     age = models.CharField(max_length=255, blank=True)
     date_of_reg = models.DateField(auto_created=True, auto_now=True)
     link = models.CharField(max_length=255, blank=True)
-    avatar = models.ImageField(blank=True, upload_to='main/users')
+    avatar = models.ImageField(blank=True, upload_to='main/users', default='main/users/player.png')
     subscribes = models.ManyToManyField("self", blank=True)
     city = models.CharField(max_length=255, blank=True)  # need change on models.ForeignKey
 
@@ -45,6 +46,14 @@ class MyUser(AbstractBaseUser):
     USERNAME_FIELD = 'login'
 
     objects = MyUserManager()
+
+    @staticmethod
+    def check_username(name):
+        banned_chars = u"\|/%!@#$^&*()+=-{}[].,><~"
+        for banned_char in banned_chars:
+            if banned_char in name:
+                return False
+        return True
 
     def __str__(self):
         return self.login
@@ -76,6 +85,6 @@ class Article(models.Model):
     logo = models.ImageField(upload_to='main/articles', blank=True)
     content = models.TextField()
     date = models.DateTimeField(auto_created=True, auto_now=True)
-    comments = models.ManyToManyField(Comment)
+    comments = models.ManyToManyField(Comment, blank=True)
 
 

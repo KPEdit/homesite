@@ -3,12 +3,45 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+	<link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Rubik:700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'main/style.css' %}">
+    <link rel="icon" href="{%static 'main/logo.png'%}">
     {% block title %}
     {% endblock %}
 </head>
 <body>
-    {% block body %}
-    {% endblock %}
+	<div class="header">
+		<a class="logo" href="/">HomeSite</a>
+		<ul class="header-links">
+			<li class="header-link">
+				<a class="link" href="/about">О нас</a>
+			</li>
+			<li class="header-link">
+				<a class="link" href="/articles">Статьи</a>
+			</li>
+		</ul>
+		{% if request.user.is_authenticated %}
+			<div class="account">
+				<a class="account-name" href="{{request.user.link}}">{{request.user.login.capitalize}}</a>
+				<div class="account-avatar">
+					<img class="account-avatar-img" src="{{request.user.avatar.url}}">
+				</div>
+				<a href="/accounts/logout" class="account-logout">Выход</a>
+			</div>
+		{% else %}
+			<div class="account-links">
+				<a class="login-page" href="/accounts/login">авторизация</a>
+				<a class="register-page" href="/accounts/register">регистрация</a>
+			</div>
+		{% endif %}
+	</div>
+	<div class="content">
+		{% block content %}
+    	{% endblock %}
+	</div>
+	<div class="footer">
+		
+	</div>
 </body>
 </html>

@@ -2,7 +2,7 @@
 {% block title %}
 <title>Register page</title>
 {% endblock %}
-{% block body %}
+{% block content %}
 <form method="post">
     {% csrf_token %}
     {% if request.user.is_authenticated %}

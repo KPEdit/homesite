@@ -1,0 +1,24 @@
+{% extends 'wrapper.html' %}
+{% block title %}
+<title>Articles page</title>
+{% endblock %}
+{% block content %}
+<div class="articles">
+    {% for article in articles %}
+        <div class="article">
+            <div class="article-additional-info">
+                <div class="article-author">
+                    {{article.author}}
+                </div>
+                <div class="article-date">
+                    {{article.date}}
+                </div>
+            </div>
+            <img src="{{article.image.url}}" class="article-image">
+            <div class="article-title">
+                {{article.title}}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

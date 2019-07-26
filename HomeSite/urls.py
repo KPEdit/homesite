@@ -23,5 +23,6 @@ urlpatterns = [
     path('', include('main.urls'))
 ]
 
+# print(settings.MEDIA_URL, settings.MEDIA_ROOT, end="\n")
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
