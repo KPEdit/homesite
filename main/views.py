@@ -40,7 +40,7 @@ def user_register(request):
                 user = MyUser.objects.create_user(username, password1)
             except IntegrityError:
                 return render(request, 'main/register_page.html', {'form':form,'lError':True})
-            user.link = "accounts/user/"+username
+            user.link = username
             user.save()
             login(request,user)
             return redirect("/")
@@ -67,9 +67,16 @@ def articles(request, page_id=1):
     return render(request, 'main/articles.html', context=context)
 
 
+def users(request, user_id):
+    user = MyUser.objects.get(link=user_id)
+    context = {'user':user}
+    return render(request, 'main/users.html', context=context)
 
 
-
+def article_info(request, article_id):
+    article = Article.objects.get(pk=article_id)
+    context = {'article':article}
+    return render(request, 'main/article_info.html', context=context)
 
 
 

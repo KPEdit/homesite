@@ -1,0 +1,14 @@
+{% extends 'wrapper.html' %}
+{% block title %}
+<title>{{user}}</title>
+{% endblock %}
+{% block content %}
+<div class="user-page">
+    <p>{{user.name}}</p>
+    <p>{{user.sur_name}}</p>
+    <img src="{{user.avatar.url}}" alt="" style="width: 100px; height: 100px;">
+    <p>{{user.age}}</p>
+    <p>{{user.city}}</p>
+    <p>{{user.date_of_reg}}</p>
+</div>
+{% endblock %}

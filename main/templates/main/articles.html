@@ -1,5 +1,7 @@
 {% extends 'wrapper.html' %}
+{% load static %}
 {% block title %}
+<link rel="stylesheet" href="{% static 'main/articles.css' %}">
 <title>Articles page</title>
 {% endblock %}
 {% block content %}
@@ -8,16 +10,20 @@
         <div class="article">
             <div class="article-additional-info">
                 <div class="article-author">
-                    {{article.author}}
+                    <a href="accounts/user/{{article.author.link}}">{{article.author}}</a>
                 </div>
                 <div class="article-date">
                     {{article.date}}
                 </div>
             </div>
-            <img src="{{article.image.url}}" class="article-image">
-            <div class="article-title">
-                {{article.title}}
+            {% if article.logo %}
+            <div class="article-image">
+                <img src="{{article.logo.url}}" alt="" class="article-logo">
             </div>
+            {% endif %}
+                <div class="article-title-div">
+                    <a class="article-title" href="article/{{article.link}}">{{article.title}}</a>
+                </div>
         </div>
     {% endfor %}
 </div>

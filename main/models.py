@@ -56,6 +56,8 @@ class MyUser(AbstractBaseUser):
         return True
 
     def __str__(self):
+        if self.name == None and self.sur_name == None:
+            return "%s %s" % (self.sur_name, self.name)
         return self.login
 
     def has_perm(self, perm, obj=None):
@@ -78,6 +80,9 @@ class Comment(models.Model):
     comment = models.TextField()
     date = models.DateTimeField(auto_now=True, auto_created=True)
 
+    def __str__(self):
+        return self.comment
+
 
 class Article(models.Model):
     author = models.ForeignKey(MyUser, on_delete=models.CASCADE)
@@ -86,5 +91,11 @@ class Article(models.Model):
     content = models.TextField()
     date = models.DateTimeField(auto_created=True, auto_now=True)
     comments = models.ManyToManyField(Comment, blank=True)
+    # link = models.CharField(max_length=255, blank=True)
 
+    def __str__(self):
+        return self.title
 
+    @property
+    def link(self):
+        return self.pk
