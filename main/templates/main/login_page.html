@@ -1,5 +1,7 @@
 {% extends 'wrapper.html' %}
+{% load static %}
 {% block title %}
+<link rel="stylesheet" href="{% static 'main/authentication.css' %}">
 <title>Login page</title>
 {% endblock %}
 {% block content %}
@@ -8,8 +10,17 @@
     {% if request.user.is_authenticated %}
         <h2>Пользователь уже авторизован</h2>
     {% else %}
-        {{ form.as_p }}
-    <input type="submit" value="Login">
+    <div class="form-flex">
+        <div class="form">
+        {% for f in form %}
+        <div class="form-attrs">
+            <label for="{{f.id_for_label}}" class="form-label">{{f.name}}:</label>
+            {{f}}
+        </div>
+        {% endfor %}
+            <input class="form-btn" type="submit" value="Login">
+        </div>
+    </div>
     {% endif %}
 </form>
 {% endblock %}

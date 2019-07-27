@@ -1,0 +1,72 @@
+div,
+p,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+ul,
+ol,
+il {
+  box-sizing:border-box;
+}
+
+.form-flex{
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+}
+
+.form{
+    background: #05f27db0;
+    border-radius: 15px;
+    box-shadow: 1px 1px #cccccc;
+    padding: 12px 20px;
+}
+
+.form-attrs {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+.form-label {
+    margin-bottom: 12px;
+    font-size: 18px;
+    font-family: 'Rubik', sans-serif;
+    margin-top: 4px;
+}
+
+.form-btn {
+    font-family: 'Rubik', sans-serif;
+    background: #3248e1de;
+    border: 50px;
+    padding: 6px 13px;
+    color: #fff;
+    border-radius: 8px;
+    margin-top: 10px;
+    float: right;
+    font-size: 16px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

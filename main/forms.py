@@ -42,10 +42,7 @@ class MyUserChangeForm(forms.ModelForm):
 
 
 class UserLoginForm(forms.Form):
-    username = forms.CharField(max_length=255,
-                               help_text="Enter user name",
-
-                               )
+    username = forms.CharField(max_length=255)
     password = forms.CharField(max_length=255, widget=forms.PasswordInput)
 
 
